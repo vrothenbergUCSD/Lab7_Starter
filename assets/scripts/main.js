@@ -25,6 +25,8 @@ const router = new Router(function () {
    * This will only be two single lines
    * If you did this right, you should see the recipe cards just like last lab
    */
+  document.querySelector('section.section--recipe-cards').classList.add('shown');
+  document.querySelector('section.section--recipe-expand').classList.remove('shown');
 });
 
 window.addEventListener('DOMContentLoaded', init);
@@ -55,6 +57,7 @@ function initializeServiceWorker() {
    *  TODO - Part 2 Step 1
    *  Initialize the service worker set up in sw.js
    */
+
 }
 
 /**
@@ -88,6 +91,7 @@ async function fetchRecipes() {
  * appends them to the page
  */
 function createRecipeCards() {
+  /*
   // Makes a new recipe card
   const recipeCard = document.createElement('recipe-card');
   // Inputs the data for the card. This is just the first recipe in the recipes array,
@@ -108,6 +112,7 @@ function createRecipeCards() {
   bindRecipeCard(recipeCard, page);
 
   document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard);
+  */
 
   /**
    * TODO - Part 1 - Step 3
@@ -117,6 +122,26 @@ function createRecipeCards() {
    * all the recipes. (bonus - add the class 'hidden' to every recipe card with 
    * an index greater  than 2 in your for loop to make show more button functional)
    */
+  let i = 0;
+  for (const [key, json] of Object.entries(recipeData)) {
+    const recipeCard = document.createElement('recipe-card');
+    recipeCard.data = json;
+    const page = json['page-name'];
+    router.addPage(page, function() {
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = json;
+    });
+    bindRecipeCard(recipeCard, page);
+  
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard);
+    
+    if (i > 2) {
+      recipeCard.classList.add('hidden');
+    }
+    i++;  
+  }      
+
 }
 
 /**
