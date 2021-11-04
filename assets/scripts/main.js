@@ -22,6 +22,8 @@ const router = new Router(function () {
    * are removing any "shown" classes on <sections> you don't want to display, this home method should
    * be called more than just at the start. You should only really need two lines for this function.
    */
+  
+
 });
 
 window.addEventListener('DOMContentLoaded', init);

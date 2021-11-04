@@ -24,6 +24,8 @@ export class Router {
      * TODO Part 1
      * Fill in this function as specified in the comment above
      */
+    history.pushState('home', '', '');
+    
   }
 
   /**
