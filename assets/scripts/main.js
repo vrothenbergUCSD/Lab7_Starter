@@ -1,6 +1,6 @@
 // main.js
 
-import { Router } from './router.js';
+import { Router } from './Router.js';
 
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
@@ -122,6 +122,8 @@ function createRecipeCards() {
    * all the recipes. (bonus - add the class 'hidden' to every recipe card with 
    * an index greater  than 2 in your for loop to make show more button functional)
    */
+
+  
   let i = 0;
   for (const [key, json] of Object.entries(recipeData)) {
     const recipeCard = document.createElement('recipe-card');
@@ -140,7 +142,8 @@ function createRecipeCards() {
       recipeCard.classList.add('hidden');
     }
     i++;  
-  }      
+  }
+       
 
 }
 
@@ -181,8 +184,9 @@ function bindShowMore() {
  */
 function bindRecipeCard(recipeCard, pageName) {
   recipeCard.addEventListener('click', e => {
+    console.log(`Clicked on ${pageName}`);
     if (e.path[0].nodeName == 'A') return;
-    router.navigate(pageName);
+    router.navigate(pageName, false);
   });
 }
 
@@ -197,6 +201,14 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
+
+  document.addEventListener('keydown', (e) => { 
+    if (e.key === "Escape") {
+      router.navigate('home', false);
+    }
+
+});
+
 }
 
 /**
@@ -218,4 +230,18 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
+  
+   window.addEventListener('popstate', (e) => { 
+     console.log('popstate');
+     
+     if (e.state) {
+      console.log(`e.state: ${e.state}`);
+      router.navigate(e.state.page, true);
+
+     } else {
+      router.navigate('home', true);
+     }
+
+  });
+
 }
