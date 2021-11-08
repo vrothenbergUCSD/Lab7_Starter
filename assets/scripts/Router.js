@@ -78,14 +78,11 @@ export class Router {
       hash = '#' + page;
     }
 
-    let path = window.location.origin + hash;    
+    let path = window.location.origin + window.location.pathname + hash;    
 
     if (!statePopped && window.location.hash != hash) {
-      //console.log('pushState');
       history.pushState({'path':path, 'page':page}, '', path); // Changes URL hash
-      //console.log(page);
     }
-    //console.log(`Window location: ${window.location}`);
 
     this[page]();
   }
