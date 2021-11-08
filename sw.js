@@ -5,9 +5,9 @@ const CACHE_NAME = 'lab-7-starter';
 
 var urlsToCache = [
   '/',
-  '/sw.js',
-  '/favicon.ico',
-  '/index.html',
+  'sw.js',
+  'favicon.ico',
+  'index.html',
   'assets/styles/main.css',
   'assets/scripts/main.js',
   'assets/scripts/Router.js',
