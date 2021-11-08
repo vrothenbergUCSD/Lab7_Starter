@@ -78,7 +78,8 @@ export class Router {
       hash = '#' + page;
     }
 
-    let path = window.location.origin + window.location.pathname + hash;    
+    //let path = window.location.origin + window.location.pathname + hash;    
+    let path = window.location.pathname + hash;  
 
     if (!statePopped && window.location.hash != hash) {
       history.pushState({'path':path, 'page':page}, '', path); // Changes URL hash
