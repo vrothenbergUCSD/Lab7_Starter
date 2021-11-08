@@ -1,4 +1,4 @@
-// router.js
+// Router.js
 
 /** Some hints for this router:
   *   - the functions being passed in should mostly be stored so that
@@ -49,7 +49,7 @@ export class Router {
    *                              'popstate' event instead of a normal card click
    */
   navigate(page, statePopped) {
-    console.log(`navigate() function called, requested page: ${page}`);
+    //console.log(`navigate() function called, requested page: ${page}`);
     /**
      * TODO - Part 1 - Step 4
      * Now, we are going to call the functions that we stored earlier based on 
@@ -81,11 +81,11 @@ export class Router {
     let path = window.location.origin + hash;    
 
     if (!statePopped && window.location.hash != hash) {
-      console.log('pushState');
+      //console.log('pushState');
       history.pushState({'path':path, 'page':page}, '', path); // Changes URL hash
-      console.log(page);
+      //console.log(page);
     }
-    console.log(`Window location: ${window.location}`);
+    //console.log(`Window location: ${window.location}`);
 
     this[page]();
   }
